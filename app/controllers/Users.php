@@ -57,6 +57,7 @@
             $this->view('/users/login', $data);
         }
 
+        // Add user to session
         public function createUserSession($user)
         {
             session_start();

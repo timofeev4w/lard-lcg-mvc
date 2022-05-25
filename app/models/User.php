@@ -15,8 +15,8 @@
             $this->db->bind(':username', $data['username']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':password', $data['password']);
-            $this->db->bind(':created_at', date('Y-m-d h:m:s'));
-            $this->db->bind(':updated_at', date('Y-m-d h:m:s'));
+            $this->db->bind(':created_at', date('Y-m-d H:i:s'));
+            $this->db->bind(':updated_at', date('Y-m-d H:i:s'));
 
             if ($this->db->execute()) {
                 return true;

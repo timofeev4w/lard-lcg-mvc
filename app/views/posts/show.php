@@ -11,7 +11,7 @@
 
 <!-- SCRIPT -->
 
-<!-- <script src="/public/js/posts/index.js"></script> -->
+<script src="/public/js/posts/show.js"></script>
 </head>
 <body>
 
@@ -19,8 +19,9 @@
 
 <div class="container">
     <!-- POST -->
+
     <div class="row mb-3">
-        <div class="col-6 offset-3 mt-3 single-post">
+        <div class="col-6 offset-3 mt-3 single-post" id="<?php echo $data['post']->id; ?>">
             <div class="row text-center p-2">
                 <h2>
                     <?php echo $data['post']->title; ?>
@@ -31,6 +32,23 @@
                 <?php echo $data['post']->body; ?>
             </div>
 
+        </div>
+    </div>
+
+    <!-- ADD COMMENT -->
+
+    <div class="row add-comments">
+        <div class="col-6 offset-3">
+            <div class="form-floating mb-2">
+                <textarea class="form-control" placeholder="Напишите что-нибудь" id="comment-body" name="comment"></textarea>
+                <label for="comment-body">Комментарий</label>
+            </div>
+
+            <div>
+                <button class="btn btn-success" id="send-comment">Отправить</button>
+            </div>
+
+            <small class="text-danger comment-error"></small>
         </div>
     </div>
 
@@ -56,56 +74,31 @@
                     </small>
                 </div>
 
-                <!-- <div> -->
-                    <?php if(isset($comment->replies)) : ?>
-                        <?php foreach($comment->replies as $reply) : ?>
-                            <div class="ms-4 ps-1 pb-1 single-reply">
-                                <div class="row">
-                                    <b>
-                                        <?php echo $reply->reply_author; ?>
-                                    </b>
-                                </div>
-
-                                <div class="row">
-                                    <p>
-                                        <?php echo $reply->body; ?>
-                                    </p>
-                                </div>
-
-                                <div class="row">
-                                    <small>
-                                        <?php echo $reply->updated_at; ?>
-                                    </small>
-                                </div>
+                <!-- REPLIES -->
+                <?php if(isset($comment->replies)) : ?>
+                    <?php foreach($comment->replies as $reply) : ?>
+                        <div class="ms-4 ps-1 pb-1 single-reply">
+                            <div class="row">
+                                <b>
+                                    <?php echo $reply->reply_author; ?>
+                                </b>
                             </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                <!-- </div> -->
+
+                            <div class="row">
+                                <p>
+                                    <?php echo $reply->body; ?>
+                                </p>
+                            </div>
+
+                            <div class="row">
+                                <small>
+                                    <?php echo $reply->updated_at; ?>
+                                </small>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
-
-            <!-- <?php if(isset($comment->replies)) : ?>
-                <?php foreach($comment->replies as $reply) : ?>
-                    <div class="col-6 offset-3 mt-3 ps-4 single-reply">
-                        <div class="row">
-                            <b>
-                                <?php echo $reply->reply_author; ?>
-                            </b>
-                        </div>
-
-                        <div class="row">
-                            <p>
-                                <?php echo $reply->body; ?>
-                            </p>
-                        </div>
-
-                        <div class="row">
-                            <small>
-                                <?php echo $reply->updated_at; ?>
-                            </small>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?> -->
         </div>
     <?php endforeach; ?>
     
