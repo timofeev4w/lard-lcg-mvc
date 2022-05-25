@@ -1,0 +1,10 @@
+.single-post{
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: 0 2px rgb(203, 203, 203);
+    cursor: pointer;
+}
+
+.single-post:hover{
+    box-shadow: 0 4px grey;
+}
